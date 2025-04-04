@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: crypto-arbitrage-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn crypto_arbitrage.wsgi"
+    envVars:
+      - key: DB_NAME
+        fromDatabase:
+          name: crypto-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: crypto-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: crypto-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: crypto-db
+          property: hos
